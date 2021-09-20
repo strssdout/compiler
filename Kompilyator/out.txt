@@ -1,0 +1,481 @@
+.model small
+.stack 100h
+.code
+start:
+  mov ax, @data
+  mov ds, ax
+
+  ;Let{
+  XOR BX, BX
+  PUSH BX
+  ;get numeric
+  MOV AX, 1337
+  PUSH AX
+  ;
+  POP AX
+  POP BX
+  MOV n[BX], AX
+  ;}
+  XOR DI, DI
+  XOR SI, SI
+@M1:
+  MOV AL, @L0[SI]
+  CMP AL, '$'
+  JZ @M2
+  MOV buffer_write[DI], AL
+  INC SI
+  INC DI
+  JMP @M1
+@M2:
+  ;get ident{
+  XOR BX, BX
+  MOV AX, n[BX]
+  PUSH AX
+  ;}
+  POP AX
+  CALL write_chislo
+  MOV buffer_write[di],'$'
+  MOV DX, offset buffer_write
+  MOV AH, 9
+  INT 21h
+  MOV DX, offset crlf
+  MOV AH, 9
+  INT 21h
+  ;Let{
+  XOR BX, BX
+  PUSH BX
+  ;get numeric
+  MOV AX, 0
+  PUSH AX
+  ;
+  POP AX
+  POP BX
+  MOV i[BX], AX
+  ;}
+  ;while(
+@M3:
+  ;get ident{
+  XOR BX, BX
+  MOV AX, n[BX]
+  PUSH AX
+  ;}
+  ;get numeric
+  MOV AX, 0
+  PUSH AX
+  ;comparison
+  POP BX
+  POP AX
+  CMP AX, BX
+  JE @M5
+  PUSH 1
+  JMP @M4
+@M5: PUSH 0
+@M4:
+  POP AX
+  CMP AX, 0
+  JNZ @M7
+  JMP @M6
+@M7:
+  ;){
+  ;Let{
+  XOR BX, BX
+  PUSH BX
+  ;get numeric
+  MOV AX, 1
+  PUSH AX
+  ;
+  POP AX
+  POP BX
+  MOV flag[BX], AX
+  ;}
+  ;while(
+@M8:
+  ;get ident{
+  XOR BX, BX
+  MOV AX, flag[BX]
+  PUSH AX
+  ;}
+  ;get numeric
+  MOV AX, 0
+  PUSH AX
+  ;comparison
+  POP BX
+  POP AX
+  CMP AX, BX
+  JE @M10
+  PUSH 1
+  JMP @M9
+@M10: PUSH 0
+@M9:
+  POP AX
+  CMP AX, 0
+  JNZ @M12
+  JMP @M11
+@M12:
+  ;){
+  XOR DI, DI
+  XOR SI, SI
+@M13:
+  MOV AL, @L1[SI]
+  CMP AL, '$'
+  JZ @M14
+  MOV buffer_write[DI], AL
+  INC SI
+  INC DI
+  JMP @M13
+@M14:
+  MOV buffer_write[di],'$'
+  MOV DX, offset buffer_write
+  MOV AH, 9
+  INT 21h
+  MOV DX, offset crlf
+  MOV AH, 9
+  INT 21h
+  MOV DX, offset buffer
+  MOV AH, 0Ah
+  INT 21h
+  MOV DX, offset crlf
+  MOV AH, 9
+  INT 21h
+  XOR DI, DI
+  ;I{
+  XOR BX, BX
+  PUSH BX
+  ;
+  CALL read_chislo
+  POP BX
+  MOV a[BX],AX
+  ;if(
+  ;get ident{
+  XOR BX, BX
+  MOV AX, a[BX]
+  PUSH AX
+  ;}
+  ;get numeric
+  MOV AX, 0
+  PUSH AX
+  ;comparison
+  POP BX
+  POP AX
+  CMP AX, BX
+  JNE @M16
+  PUSH 1
+  JMP @M15
+@M16: PUSH 0
+@M15:
+  POP AX
+  CMP AX, 0
+  JNZ @M17
+  JMP @M18
+@M17:
+  ;)
+  ;then{
+  XOR DI, DI
+  XOR SI, SI
+@M19:
+  MOV AL, @L2[SI]
+  CMP AL, '$'
+  JZ @M20
+  MOV buffer_write[DI], AL
+  INC SI
+  INC DI
+  JMP @M19
+@M20:
+  MOV buffer_write[di],'$'
+  MOV DX, offset buffer_write
+  MOV AH, 9
+  INT 21h
+  MOV DX, offset crlf
+  MOV AH, 9
+  INT 21h
+  JMP @M21
+@M18:
+  ;}
+  ;else{
+  ;Let{
+  XOR BX, BX
+  PUSH BX
+  ;get numeric
+  MOV AX, 0
+  PUSH AX
+  ;
+  POP AX
+  POP BX
+  MOV flag[BX], AX
+  ;}
+  ;}
+@M21:
+  JMP @M8
+@M11:
+  ;}
+  ;Let{
+  XOR BX, BX
+  PUSH BX
+  ;get ident{
+  XOR BX, BX
+  MOV AX, n[BX]
+  PUSH AX
+  ;}
+  ;get ident{
+  XOR BX, BX
+  MOV AX, a[BX]
+  PUSH AX
+  ;}
+  ;add
+  POP AX
+  POP BX
+  AND AX, BX
+  PUSH AX
+  ;
+  POP AX
+  POP BX
+  MOV temp[BX], AX
+  ;}
+  XOR DI, DI
+  ;get ident{
+  XOR BX, BX
+  MOV AX, n[BX]
+  PUSH AX
+  ;}
+  POP AX
+  CALL write_chislo
+  XOR SI, SI
+@M22:
+  MOV AL, @L3[SI]
+  CMP AL, '$'
+  JZ @M23
+  MOV buffer_write[DI], AL
+  INC SI
+  INC DI
+  JMP @M22
+@M23:
+  ;get ident{
+  XOR BX, BX
+  MOV AX, a[BX]
+  PUSH AX
+  ;}
+  POP AX
+  CALL write_chislo
+  XOR SI, SI
+@M24:
+  MOV AL, @L4[SI]
+  CMP AL, '$'
+  JZ @M25
+  MOV buffer_write[DI], AL
+  INC SI
+  INC DI
+  JMP @M24
+@M25:
+  ;get ident{
+  XOR BX, BX
+  MOV AX, temp[BX]
+  PUSH AX
+  ;}
+  POP AX
+  CALL write_chislo
+  MOV buffer_write[di],'$'
+  MOV DX, offset buffer_write
+  MOV AH, 9
+  INT 21h
+  MOV DX, offset crlf
+  MOV AH, 9
+  INT 21h
+  ;Let{
+  XOR BX, BX
+  PUSH BX
+  ;get ident{
+  XOR BX, BX
+  MOV AX, temp[BX]
+  PUSH AX
+  ;}
+  ;
+  POP AX
+  POP BX
+  MOV n[BX], AX
+  ;}
+  ;Let{
+  XOR BX, BX
+  PUSH BX
+  ;get ident{
+  XOR BX, BX
+  MOV AX, i[BX]
+  PUSH AX
+  ;}
+  ;get numeric
+  MOV AX, 1
+  PUSH AX
+  ;add
+  POP AX
+  POP BX
+  ADD AX, BX
+  PUSH AX
+  ;
+  POP AX
+  POP BX
+  MOV i[BX], AX
+  ;}
+  JMP @M3
+@M6:
+  ;}
+  XOR DI, DI
+  XOR SI, SI
+@M26:
+  MOV AL, @L5[SI]
+  CMP AL, '$'
+  JZ @M27
+  MOV buffer_write[DI], AL
+  INC SI
+  INC DI
+  JMP @M26
+@M27:
+  MOV buffer_write[di],'$'
+  MOV DX, offset buffer_write
+  MOV AH, 9
+  INT 21h
+  MOV DX, offset crlf
+  MOV AH, 9
+  INT 21h
+  XOR DI, DI
+  XOR SI, SI
+@M28:
+  MOV AL, @L6[SI]
+  CMP AL, '$'
+  JZ @M29
+  MOV buffer_write[DI], AL
+  INC SI
+  INC DI
+  JMP @M28
+@M29:
+  ;get ident{
+  XOR BX, BX
+  MOV AX, i[BX]
+  PUSH AX
+  ;}
+  POP AX
+  CALL write_chislo
+  XOR SI, SI
+@M30:
+  MOV AL, @L7[SI]
+  CMP AL, '$'
+  JZ @M31
+  MOV buffer_write[DI], AL
+  INC SI
+  INC DI
+  JMP @M30
+@M31:
+  MOV buffer_write[di],'$'
+  MOV DX, offset buffer_write
+  MOV AH, 9
+  INT 21h
+  MOV DX, offset crlf
+  MOV AH, 9
+  INT 21h
+  MOV DX, offset buffer
+  MOV AH, 0Ah
+  INT 21h
+  MOV DX, offset crlf
+  MOV AH, 9
+  INT 21h
+  XOR DI, DI
+  ;I{
+  XOR BX, BX
+  PUSH BX
+  ;
+  CALL read_chislo
+  POP BX
+  MOV b[BX],AX
+
+Exit:
+  mov ah, 4Ch
+  int 21h
+read_chislo proc 
+  xor ax, ax
+  mov cl, blength
+  xor ch, ch
+  xor bx, bx
+  mov si, cx
+  mov cl, 10
+Read1:
+  cmp di, si
+  ;if error
+  ja End1
+  mov bl, byte ptr bcontents[di]
+  inc di
+  sub bl, '0'
+  jb Read1
+  cmp bl, 9
+  ja Read1
+Read2:
+  mul cx
+  add ax, bx
+  mov bl, byte ptr bcontents[di]
+  sub bl, '0'
+  jb End1
+  cmp bl, 9
+  ja End1
+  inc di
+  jmp Read2
+End1:
+  ret
+read_chislo endp
+write_chislo proc 
+  mov cx, 10000
+  xor bp, bp
+  xor si, si
+Loop1 :
+  xor dx, dx
+  div cx
+  ; проверка на первые нули
+  cmp ax, 0
+  jnz WriteInBuf
+  cmp bp, 0
+  jnz WriteInBuf
+  jmp Div10
+WriteInBuf :
+  mov bp, 1; взводим флаг
+  add ax, '0'
+  mov byte ptr buffer_write[di], al
+  inc si
+  inc di
+Div10 :
+  cmp cx, 1
+  jz ifZero
+  mov ax, cx
+  mov cx, dx
+  xor dx, dx
+  mov bx, 10
+  div bx
+  mov bx, ax
+  mov ax, cx
+  mov cx, bx
+  jmp Loop1
+ifZero :
+  cmp si, 0
+  jnz End2
+  mov byte ptr buffer_write[di], '0'
+  inc di;
+End2:
+  ret
+write_chislo endp
+.data
+  a   DW     (?)
+  n   DW     (?)
+  i   DW     (?)
+  temp   DW     (?)
+  flag   DW     (?)
+  b   DW     (?)
+  l   DB     (?)
+  @L0   DB "S pomoshyu pobitovogo AND(&) sdelai 0 is chisla $"
+  @L1   DB "Vvedite chhislo:$"
+  @L2   DB "Vi vveli 0, tak ne chesno!$"
+  @L3   DB " & $"
+  @L4   DB " = $"
+  @L5   DB " $"
+  @L6   DB "Vi sdelali 0 za $"
+  @L7   DB " operaciy.$"
+  crlf db 0Dh, 0Ah, '$'
+  buffer_write db 20 dup (?),'$'
+  buffer db 20
+  blength db ?
+  bcontents db 20 dup (?)
+end start

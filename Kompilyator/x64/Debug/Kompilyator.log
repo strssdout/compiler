@@ -1,0 +1,7 @@
+﻿  Kompilyator.cpp
+  Leks.cpp
+C:\Users\vladi\Desktop\Курсовые\1 Я\Kompilyator\Leks.cpp(321,29): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\vladi\Desktop\Курсовые\1 Я\Kompilyator\Leks.cpp(341,25): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\vladi\Desktop\Курсовые\1 Я\Kompilyator\Leks.cpp(355,25): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+  Создание кода...
+  Kompilyator.vcxproj -> C:\Users\vladi\Desktop\Курсовые\1 Я\x64\Debug\Kompilyator.exe

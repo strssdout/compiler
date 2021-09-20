@@ -1,0 +1,35 @@
+Boyko
+Declare
+int a,n,i,temp,flag,b;
+char l
+main {
+  
+  n = 1337;
+
+  Write('S pomoshyu pobitovogo AND(&) sdelai 0 is chisla ', n);
+  
+  i=0;
+  
+  while(#n<>0#){
+    flag = 1;
+    while(#flag<>0#){
+      Write('Vvedite chhislo:');
+      Read(a);
+      if(#a==0#)then{
+        Write('Vi vveli 0, tak ne chesno!');
+      }else{flag = 0;};
+    };
+    temp = n & a;
+    Write(n, ' & ', a, ' = ', temp);
+    n = temp;
+    i=i+1;
+  };
+
+  Write(' ');
+
+  Write('Vi sdelali 0 za ', i, ' operaciy.');
+
+  Read(b);
+}
+end
+$

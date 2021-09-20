@@ -1,0 +1,6 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(473,5): warning MSB8003: свойство WindowsSDKDir не определено. Возможно, не найдены некоторые средства сборки.
+  Kompilyator.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29333\include\yvals.h(12,10): fatal error C1083: Не удается открыть файл включение: crtdbg.h: No such file or directory,
+  Leks.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.28.29333\include\yvals.h(12,10): fatal error C1083: Не удается открыть файл включение: crtdbg.h: No such file or directory,
+  Создание кода...
